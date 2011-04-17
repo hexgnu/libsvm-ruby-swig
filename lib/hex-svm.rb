@@ -1,4 +1,4 @@
-require File.join(File.dirname(__FILE__), 'libsvm')
+require File.join(File.dirname(__FILE__), '../ext/libsvm')
 include Libsvm
 
 %w[./libsvm/problem ./libsvm/model ./libsvm/parameter].each do |r|
