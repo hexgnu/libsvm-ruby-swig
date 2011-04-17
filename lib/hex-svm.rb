@@ -1,7 +1,7 @@
 require File.join(File.dirname(__FILE__), '../ext/libsvm')
 include Libsvm
 
-%w[./libsvm/problem ./libsvm/model ./libsvm/parameter].each do |r|
+%w[libsvm/problem libsvm/model libsvm/parameter].each do |r|
   require File.join(File.dirname(__FILE__), r)
 end
 
