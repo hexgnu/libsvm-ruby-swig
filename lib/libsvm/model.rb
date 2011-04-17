@@ -33,7 +33,7 @@ module SVM
     end
   
     def predict(x)
-      data = _convert_to_svm_node_array(x)
+      data = SVM.convert_to_svm_node_array(x)
       ret = svm_predict(@model,data)
       svm_node_array_destroy(data)
       return ret

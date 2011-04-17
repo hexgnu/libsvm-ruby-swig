@@ -16,7 +16,8 @@ module SVM
       @data = []
       @maxlen = 0
       x.each_with_index do |row, i|
-        data = _convert_to_svm_node_array(row)
+        #data = _convert_to_svm_node_array(row)
+        data = SVM.convert_to_svm_node_array(row)
         @data << data
         svm_node_matrix_set(x_matrix, i, data)
         @maxlen = [@maxlen, row.size].max
