@@ -1,21 +1,21 @@
 Gem::Specification.new do |s|
-  s.name = %q{libsvm-ruby-swig}
-  s.version = "0.4.0"
+  s.name = %q{hexgnu-libsvm-ruby-swig}
+  s.version = "0.1.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
-  s.authors = ["Tom Zeng"]
-  s.date = %q{2010-03-27}
+  s.authors = ["Tom Zeng", "Matthew Kirk"]
+  s.date = %q{2011-04-17}
   s.description = %q{Ruby wrapper of LIBSVM using SWIG}
-  s.email = %q{tom.z.zeng@gmail.com}
+  s.email = %q{matt@matthewkirk.com}
   s.extensions = ["ext/extconf.rb"]
   s.extra_rdoc_files = ["History.txt", "Manifest.txt", "README.rdoc"]
   s.files = ["History.txt", "COPYING", "AUTHORS", "Manifest.txt", "README.rdoc", "Rakefile", "lib/svm.rb", "ext/libsvm_wrap.cxx", "ext/svm.cpp", "ext/svm.h", "ext/extconf.rb"]
   s.has_rdoc = false
-  s.homepage = %q{http://www.tomzconsulting.com}
+  s.homepage = %q{http://www.matthewkirk.com}
   s.rdoc_options = ["--main", "README.rdoc"]
   s.require_paths = ["lib","ext"]
   s.rubygems_version = %q{1.3.1}
-  s.summary = %q{Ruby wrapper of LIBSVM using SWIG}
+  s.summary = %q{Ruby wrapper fork of Tom Zeng's libsvm wrapper}
 
   if s.respond_to? :specification_version then
     current_version = Gem::Specification::CURRENT_SPECIFICATION_VERSION
