@@ -16,7 +16,7 @@ module SVM
         end
         msg = svm_check_parameter(prob.prob,param.param)
         raise ::ArgumentError, msg if msg
-        @model = svm_train(prob.prob,param.param)
+        @model = svm_train(prob.prob, param.param)
       end
     
       #setup some classwide variables
@@ -29,11 +29,10 @@ module SVM
       delete_int(intarr)
       #check if valid probability model
       @probability = svm_check_probability_model(@model)
-
     end
   
-    def predict(x)
-      data = SVM.convert_to_svm_node_array(x)
+    def predict(x, max = x.max)
+      data = SVM.convert_to_svm_node_array(x, max)
       ret = svm_predict(@model,data)
       svm_node_array_destroy(data)
       return ret
@@ -54,7 +53,7 @@ module SVM
     def predict_values_raw(x)
       #convert x into svm_node, allocate a double array for return
       n = (@nr_class*(@nr_class-1)/2).floor
-      data = _convert_to_svm_node_array(x)
+      data = SVM.convert_to_svm_node_array(x)
       dblarr = new_double(n)
       svm_predict_values(@model, data, dblarr)
       ret = _double_array_to_list(dblarr, n)
@@ -101,7 +100,7 @@ module SVM
       end
     
       #convert x into svm_node, alloc a double array to receive probabilities
-      data = _convert_to_svm_node_array(x)
+      data = SVM.convert_to_svm_node_array(x)
       dblarr = new_double(@nr_class)
       pred = svm_predict_probability(@model, data, dblarr)
       pv = _double_array_to_list(dblarr, @nr_class)

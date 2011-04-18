@@ -1,9 +1,11 @@
 module SVM
   class Problem
     attr_accessor :prob, :maxlen, :size
+    attr_reader :max
     
     def initialize(y, *x)
       #assert y.size == x.size
+      @max = x.flatten.max #aggh hate doing this...
       @prob = prob = Svm_problem.new 
       @size = size = y.size
     
@@ -14,12 +16,10 @@ module SVM
     
       @x_matrix = x_matrix = svm_node_matrix(size)
       @data = []
-      @maxlen = 0
+      @maxlen = max
       x.each_with_index do |row, i|
-        #data = _convert_to_svm_node_array(row)
-        data = SVM.convert_to_svm_node_array(row)
-        @data << data
-        svm_node_matrix_set(x_matrix, i, data)
+        @data << SVM.convert_to_svm_node_array(row, max)
+        svm_node_matrix_set(x_matrix, i, @data.last)
         @maxlen = [@maxlen, row.size].max
       end
     

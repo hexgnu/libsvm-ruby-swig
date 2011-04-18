@@ -71,16 +71,25 @@ end
 module SVM
   extend self
   
-  def convert_to_svm_node_array(x, max = 30) 
-    # X is an array of indicies
-    # Make index array 
-    # iter_range = x.sort
-
-    data = svm_node_array(max + 1)
-    svm_node_array_set(data, max, -1, 0)
-
-    x.sort.each do |k|
-      svm_node_array_set(data, k, k, 1)
+  def convert_to_svm_node_array(indicies, max) 
+    # Make index array
+    # x = indexes_to_array(indicies, max)
+    # iter_range = x.each_index.to_a
+    
+    data = svm_node_array(indicies.length + 1)
+    svm_node_array_set(data, indicies.length, -1, 0)
+    
+    # max.times do |i|
+    #   # Set to zero if not in indicies
+    #   if indicies.include?(i)
+    #     svm_node_array_set(data, i, i, 1)
+    #   else
+    #     svm_node_array_set(data, i, i, 0)
+    #   end
+    # end
+    
+    indicies.sort.each_with_index do |idx, i|
+      svm_node_array_set(data, i, idx, 1)
     end
 
     data
